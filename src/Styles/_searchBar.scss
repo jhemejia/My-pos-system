@@ -1,0 +1,135 @@
+/* searchBar */
+.searchBar{
+    display: flex;
+    flex-flow: row nowrap;
+    height: 6vh;
+    width: 100%;
+    background-color: #337bbe;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 0 10px;
+    position: relative;
+    h2{
+        position: absolute;
+        margin-top: 10px ;
+        left: 10px;
+        color: white;
+    }
+
+}
+
+.searchInput{
+    
+    position: relative;
+    transition: all 1s;
+    top: 10%;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    background: white;
+    box-sizing: border-box;
+    border-radius: 25px;
+    border: 4px solid white;
+    padding: 5px;
+    cursor: pointer;
+    &:hover{  
+    width: 250px;
+    }
+    &:hover input{
+        display: block;
+        width: auto;
+    }
+    &:hover .faSymbolsTop{
+        display: none;
+    }
+    &>button{
+        display: none;
+        position: absolute;
+        top: 70px;
+        bottom:0;
+        left: 0;
+        right: 0;
+        font-size: 20px;
+        color: white;
+        text-align: center; 
+        width: 10px;
+        cursor: pointer;
+    }
+    &:focus button {
+        display: block;
+        
+    }
+}
+.faSymbolsTop {
+    box-sizing: border-box;
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    top: 10%;
+    right: min(15%,10px) ;
+    margin: 0 auto;
+    border-radius: 50%;
+    color: #07051a;
+    text-align: center;
+    transition: all 1s;
+}
+
+
+input[type=search]{
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-width: 100%;
+    height: 35px;
+    line-height: 30px;
+    outline: 0;
+    border: 0;
+    display: none;
+    font-size: 1em;
+    border-radius: 20px;
+    padding: 0 20px;
+    
+}
+.selectCategories{
+    position: relative;
+    top: 10%;
+    transition: all 1s;
+    width: 40px;
+    height: 40px;
+    background: rgb(255, 255, 255);
+    box-sizing: border-box;
+    border-radius: 25px;
+    border: 4px solid white;
+    padding: 5px;
+    cursor: pointer;
+    &:hover{
+        max-width: 300px;
+        &> select{
+            display: block;
+            max-width: 100%;
+        }
+    }
+    &:hover .faSymbolsTop{
+        display: none;
+    }
+    }
+
+.searchBar select {
+        position: absolute;
+        top: -4px;
+        right: 0px;
+        width: 100%;
+        height: 40px;
+        line-height: 30px;
+        outline: 0;
+        border: 0;
+        display: none;
+        font-size: 1em;
+        border-radius: 20px;
+        padding: 0 10px;   
+        transition: all 1s;
+
+}
+.hideIcon{
+    display: none;
+}

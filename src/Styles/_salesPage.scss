@@ -1,0 +1,52 @@
+.salesPage{
+    display: grid;
+    position: relative;
+    grid-template-columns: 2fr 0.6fr;    
+    height: 93vh;
+    width: 100vw;
+}
+
+/* Spinner styles */
+.spinner{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    position: absolute;
+    margin: 0 auto;
+    width: 100vw;
+    height: 100vh;
+}
+@keyframes spin {
+    100%{
+        rotate: 360deg;
+    }
+}
+
+.spinner svg {
+    align-self: center;
+    width : 10vw;
+    height: 10vh;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes dash {
+    0%{
+        stroke-dasharray: 1, 150;
+        stroke-dashoffset: 0;
+    }
+    50%{
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: -35;
+    }
+    100%{
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: -124;
+    }
+}
+circle {
+    fill: none;
+    stroke: aqua;
+    stroke-width: 3px;
+    stroke-linecap: round;
+    animation: dash 2.5s ease-in-out infinite;
+}
