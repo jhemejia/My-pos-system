@@ -1,13 +1,49 @@
+
+
 .inventoryPage {
     display: flex;
     width: 100vw;
     height: 100vh;
     justify-content: center;
     overflow: auto;
+    padding: 0 15px;
+    position: relative;
 }
+  /*  Add a product form  */
+ 
+.addProduct {
+    position: relative;
+    width: 100%; 
+    padding: 0 15px;
+}
+.addProduct form{
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-start; 
+}
+.addProductInput {
+    position: relative;
+}
+
+.addProductInput .labels{
+    position: absolute;
+    left: 10px;
+    // top: 14px;
+    transition: all 0.2s;
+    padding: 0 2px;
+    z-index: 1;
+    color: #b3b3b3;
+}
+.addProductInput input{
+    height: 25px;
+}
+/*  End of Add a product form  */
+
 .tableTitle{
     position: relative;
-    width: 100%;
+    max-width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -77,6 +113,9 @@
     }
 }
 
+.flTable tr:hover{
+    box-shadow: 1px 1px 3px 1px rgba(51, 51, 51, 0.18); 
+}
 .flTable tbody tr td input {
     width:100%;
     padding:5px;
@@ -142,6 +181,8 @@
     align-items: center;
     justify-content: center;
   }
+
+
 
 
  /*  RESPONSIVE  */ 

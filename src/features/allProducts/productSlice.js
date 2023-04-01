@@ -3,7 +3,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 export const fetchProducts = createAsyncThunk(
   'products/loadData',
   async () => {
-    const data = await fetch('https://dummyjson.com/products?limit=500');
+    const data = await fetch('https://dummyjson.com/products?limit=100');
     const json = await data.json();
     return json;
   }
@@ -53,7 +53,7 @@ export const createProduct = createAsyncThunk(
   'products/createProduct ',
    async(productData) => {
      try {
-      const response = await fetch('/api/products', {
+      const response = await fetch('https://dummyjson.com/products/add', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -61,6 +61,7 @@ export const createProduct = createAsyncThunk(
         body: JSON.stringify(productData),
       });
       if (response.ok) {
+        console.log(response)
         fetchProducts();
       } else {
         throw new Error('Unable to create product.');
