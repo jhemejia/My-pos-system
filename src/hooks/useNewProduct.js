@@ -15,11 +15,20 @@ const useNewProduct = () => {
           [name]: value,
         }));
       };
-
+    const resetNewProductForm = ()=>{
+      setNewProduct({
+        title: '',
+        description: '',
+        price: '',
+        brand: '',
+        category: '',
+      })
+    }
   return (
   {
     newProduct,
-    handleInputChange
+    handleInputChange,
+    resetNewProductForm
   }
   )
 }
