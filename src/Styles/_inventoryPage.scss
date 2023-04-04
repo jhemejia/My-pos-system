@@ -1,13 +1,132 @@
+
+
 .inventoryPage {
     display: flex;
     width: 100vw;
     height: 100vh;
     justify-content: center;
     overflow: auto;
+    padding: 0 15px;
+    position: relative;
 }
+  /*  Add a product form  */
+ 
+.addProduct {
+    position: relative;
+    width: 100%; 
+    padding: 0 15px;
+
+}
+.addProduct form{
+    position: relative;
+    padding: 20px 0px;
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-evenly; 
+}
+.newProductFormInputs{
+    display: flex;
+    flex-flow: row wrap;
+    align-items: flex-start;
+    justify-content: flex-start; 
+    gap:10px;
+}
+.addProductInputDiv {
+   position: relative;
+   height:40px;
+   width: auto;
+}
+
+.addProductInputDiv .labels{
+    position: absolute;
+    left: 10px;
+    // top: 14px;
+    transition: all 0.2s;
+    padding: 0 2px;
+    z-index: 1;
+    color: #b3b3b3;
+    display: none;
+}
+.addProductInputDiv .labels::before {
+    content: "";
+    height: 5px;
+    background: #fff;
+    position: absolute;
+    left: 0px;
+    top: 10px;
+    width: 100%;
+    z-index:-1; 
+    }
+.addProductInputDiv .allInputs{
+    height: 30px;
+    border: 2px solid #797878;
+    height: 100%;
+    
+}
+.description{
+    width:400px;
+}
+
+.allInputs:focus {
+    border: 2px solid #2f6fb6;
+    }
+.allInputs:hover{
+border: 2px solid #2f6fb6;    
+}
+.allInputs:focus + .labels,
+.filled {
+top: -10px;
+color: #2f6fb6;
+font-size: 16px;
+display: block;
+}
+
+.allInputs::placeholder {
+font-size: 16px;
+opacity: 1;
+transition: all 0.35;
+}
+.allInputs:focus::placeholder {
+opacity: 0;
+}
+.allInputs:not(:placeholder-shown) +.labels {
+    top: -10px;
+    color: #2f6fb6;
+    font-size: 16px;
+    display: block;
+}
+.newProductSubmit {
+    display: flex;
+    align-items: center ;
+    justify-content: flex-start; 
+    min-width: 130px;
+    height: 100%;
+    padding: 0 20px ;
+}
+
+.newProductSubmit input[type="submit"]{
+    position: absolute;
+    right: 0;
+    padding: 10px ;
+    border-radius: 25px;
+    color: white;
+    background-color: #2f6fb6;
+    border: 2px solid #2f6fb6;
+    cursor: pointer;
+
+    &:hover{
+    color: #2f6fb6;
+    background-color: white;
+    }
+}
+
+/*  End of Add a product form  */
+
 .tableTitle{
     position: relative;
-    width: 100%;
+    max-width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -77,6 +196,9 @@
     }
 }
 
+.flTable tr:hover{
+    box-shadow: 1px 1px 3px 1px rgba(51, 51, 51, 0.18); 
+}
 .flTable tbody tr td input {
     width:100%;
     padding:5px;
@@ -142,6 +264,8 @@
     align-items: center;
     justify-content: center;
   }
+
+
 
 
  /*  RESPONSIVE  */ 

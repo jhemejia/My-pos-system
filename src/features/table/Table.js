@@ -43,11 +43,11 @@ const Table = ({ data, rowsPerPage }) => {
             </tr>
           </thead>
           <tbody>
-            {slice.map((product) => ( 
+            {slice.map((product, index) => ( 
               <>
               { editProductId === product.id? 
-              <EditableRow product={product} handleClickCancel={(e)=> handleClickCancel(e)}/> :
-              <ReadOnlyRow product={product} handleEditClick={(e)=> handleEditClick(e, product)}/>
+              <EditableRow key={index} product={product} handleClickCancel={(e)=> handleClickCancel(e)}/> :
+              <ReadOnlyRow key={index} product={product} handleEditClick={(e)=> handleEditClick(e, product)}/>
               }
               </> 
             ))}

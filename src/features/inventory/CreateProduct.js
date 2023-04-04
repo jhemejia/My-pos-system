@@ -1,100 +1,119 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { createProduct, selectAllProducts } from '../allProducts/productSlice';
+import React from 'react';
+import Styles from '../../Styles/styles.module.scss'
+import { useDispatch } from 'react-redux';
+import { createProduct, fetchProducts } from '../allProducts/productSlice';
+import { useCategories } from '../../hooks/useCategories';
+import useNewProduct from '../../hooks/useNewProduct';
+import { newProductSchema } from '../../Validations/NewProductValidation';
+
 
 const CreateProduct = () => {
-  const [newProduct, setNewProduct] = useState({
-    id: '',
-    title: '',
-    description: '',
-    price: '',
-    brand: '',
-    category: '',
-  });
-  const allProducts = useSelector(selectAllProducts);
-
+  const { newProduct, handleInputChange, resetNewProductForm } = useNewProduct();
+  const {categories} = useCategories();  
   const dispatch = useDispatch();
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setNewProduct((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
-
-  const generateId = (allProducts)=>{
-    const lastId = allProducts.length;
-    setNewProduct((prevState)=>({
-        ...prevState,
-        id: lastId+1
-    }))
-    console.log(lastId);
-  }
-
-
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    generateId(allProducts);
-    
-    dispatch(createProduct(newProduct));
+
+    const isValid = await newProductSchema.isValid(newProduct);
+   
+    if (isValid) {
+      dispatch(createProduct(newProduct));
+      dispatch(fetchProducts());     
+      alert("New Product has been created!")
+      resetNewProductForm();
+    } else {
+      alert("Error: Please review your inputs!")
+    }
   };
 
   return (
-    <div style={{ width: '100%' }}>
+    <div className={Styles.addProduct}>
       <form onSubmit={handleSubmit}>
+        <div className={Styles.newProductFormInputs}>
 
-        <label>
-          Title:
+        <div className={Styles.addProductInputDiv}>
           <input
             type="text"
             name="title"
             value={newProduct.title}
             onChange={handleInputChange}
-          />
-        </label>
-        <br />
-        <label>
-          Description:
+            className={Styles.allInputs}
+            placeholder='Title'
+            required
+            />
+          <label className={Styles.labels}>
+          Title
+              </label>
+            </div>
+            <div className={Styles.addProductInputDiv}>
           <input
             type="text"
             name="description"
             value={newProduct.description}
             onChange={handleInputChange}
-          />
-        </label>
-        <br />
-        <label>
-          Price:
+            className={`${Styles.allInputs} ${Styles.description}`}
+            placeholder='Description'
+            required
+            />
+        <label className={Styles.labels}>
+          Description
+          </label>
+       </div>
+       <div className={Styles.addProductInputDiv}>
           <input
-            type="text"
+            type="number"
             name="price"
             value={newProduct.price}
             onChange={handleInputChange}
-          />
-        </label>
-        <br />
-        <label>
-          Brand:
+            className={Styles.allInputs}
+            placeholder='Price'
+            required
+            />
+        <label className={Styles.labels}>
+          Price
+          </label>
+      </div>
+      <div className={Styles.addProductInputDiv}>
+        
           <input
             type="text"
             name="brand"
             value={newProduct.brand}
             onChange={handleInputChange}
-          />
-        </label>
-        <br />
-        <label>
-          Category:
-          <input
-            type="text"
+            className={Styles.allInputs}
+            placeholder='Brand'
+            required
+            />
+            <label className={Styles.labels}>
+          Brand
+          </label>
+      </div>
+      <div className={Styles.addProductInputDiv}>
+        
+          <select
             name="category"
             value={newProduct.category}
             onChange={handleInputChange}
-          />
-        </label>
-        <br />
-        <button type="submit">Add a Product</button>
+            className={Styles.allInputs}
+            required
+            >
+              <option key="0" value="" disabled >Please Select Category</option>
+              { categories?.map((category, index)=>{
+    return (
+      <option key={index} value={category}>{category.charAt(0).toUpperCase()+ category.slice(1)}</option>
+      )
+    })} 
+    
+            </select>
+            <label className={Styles.labels}>
+          Category: 
+          </label>
+      </div>
+            </div>
+            <div className={Styles.newProductSubmit}>
+        <input type="submit" value="Add a Product"/>
+            </div>
       </form>
     </div>
   );

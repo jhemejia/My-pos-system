@@ -7,7 +7,7 @@
 const NavBar = () => {
    return (
     <nav className={Styles.navBar}>
-  <NavLink  to="/#">
+  <NavLink  to="/login">
     <FontAwesomeIcon icon={faDisplay} />
     <span>Dashboard</span>
   </NavLink >
