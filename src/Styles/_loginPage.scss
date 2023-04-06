@@ -59,7 +59,7 @@
     border-color: #1b1b1b;  
     outline: none;
     &+.labels{
-    top: -30px;
+    top: -25px;
     color: #000;
     font-size: 16px;
     display: block;
@@ -67,7 +67,7 @@
     }
 } 
 .loginInputDiv input:not(:placeholder-shown) +.labels {
-    top: -30px;
+    top: -25px;
     color: #000;
     font-size: 16px;
     display: block;

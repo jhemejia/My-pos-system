@@ -69,8 +69,9 @@ const SignUpForm = (props) => {
         </label>
         </div>
         <input type="submit" className='' />
-          <button onClick={()=>toggleIsLogin()}>I have an account</button>
-        </form>
+        <p>
+          <button onClick={()=>toggleIsLogin()}>Already have an account? Log In Here</button>    
+        </p>        </form>
       
   )
 }
