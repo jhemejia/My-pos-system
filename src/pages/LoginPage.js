@@ -1,38 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Styles from '../Styles/styles.module.scss'
-import { userValidationSchema } from '../Validations/UserValidation';
-import { useNavigate } from "react-router-dom";
-
+import LoginForm from '../features/auth/LoginForm'
+import SignUpForm from '../features/auth/SignUpForm'
+import useToggle from '../hooks/useToggle'
 
 const LoginPage = () => {
-    const [userData, setUserData] = useState({
-        username: '',
-        password: ''
-    });
-    const navigate = useNavigate();
-
-    const handleInputChange = (event) => {
-        event.preventDefault();
-        const { name, value } = event.target;
-        setUserData((prevState) => ({
-          ...prevState,
-          [name]: value,
-        }));
-      };
-
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        console.log(userData)
-        const isValid = await userValidationSchema.isValid(userData);
-        if (isValid) {
-          alert("Login Sucessfull!")
-          navigate("/home")
-
-        } else {
-          throw new Error("Error: Username or Password is invalid!")
-        }
-      };
-
+    const [isLogin, toggleIsLogin ] = useToggle(true);
+  console.log(isLogin)
   return  ( 
     <div className={Styles.area}>
       <ul className={Styles.circles}>
@@ -47,38 +21,10 @@ const LoginPage = () => {
                     <li></li>
                     <li></li>
             </ul>
-        <div className={Styles.loginFormContainer}>
-        <form onSubmit={handleSubmit}>
-        <h3>Login Here</h3>
-        <div className={Styles.loginInputDiv}>
-        <input  
-        type='text'
-        name="username"  
-        value={userData.username.value}
-        onChange={handleInputChange}
-        className={Styles.allInputs}
-        placeholder='Email or Phone'
-        required />
-        <label className={Styles.labels}>
-            Username
-        </label>
-        </div>
-        <div className={Styles.loginInputDiv}>
-        <input  
-        type='password'
-        name="password"  
-        value={userData.password.value} 
-        onChange={handleInputChange}
-        className={Styles.allInputs}
-        placeholder='Password'
-        required />
-        <label className={Styles.labels}>
-            Password
-        </label>
-        </div>
-        <input type="submit" className='' />
-        </form>    
-            </div>    
+            <div className={Styles.loginFormContainer}>
+            {isLogin ? <LoginForm toggleIsLogin={toggleIsLogin}/> : <SignUpForm toggleIsLogin={toggleIsLogin} /> }
+            </div>
+
     </div>
   )
 }
