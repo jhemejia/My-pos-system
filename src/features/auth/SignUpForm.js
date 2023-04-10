@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import Styles from '../../Styles/styles.module.scss'
 import { userValidationSchema } from '../../Validations/UserValidation';
-import { auth } from '../../firebase';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { UserAuth } from './Auth';
+import { useNavigate } from 'react-router-dom';
+
 
 
 const SignUpForm = (props) => {
@@ -11,7 +12,8 @@ const SignUpForm = (props) => {
         username: '',
         password: ''
     });
-
+    const { createUser } = UserAuth();
+    const navigate = useNavigate();
     const handleInputChange = (event) => {
         event.preventDefault();
         const { name, value } = event.target;
@@ -23,17 +25,10 @@ const SignUpForm = (props) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log(userData)
         const isValid = await userValidationSchema.isValid(userData);
         if (isValid) {
-          alert("Login Sucessfull!")
-          createUserWithEmailAndPassword(auth,userData.username, userData.password)
-          .then((userCredential)=>{
-            console.log(userCredential)
-          }).catch((error)=>{
-            console.log(error)
-          })
-
+          await createUser(userData);
+          navigate("/")
         } else {
           throw new Error("Error: Username or Password is invalid!")
         }
@@ -68,10 +63,10 @@ const SignUpForm = (props) => {
             Password
         </label>
         </div>
-        <input type="submit" className='' />
-        <p>
-          <button onClick={()=>toggleIsLogin()}>Already have an account? Log In Here</button>    
-        </p>        </form>
+        <input type="submit" className='' value="Submit"/>
+        <span>
+          Already have an account? <button className={Styles.toggleButton} onClick={()=>toggleIsLogin()}>Log In Here</button>    
+        </span>        </form>
       
   )
 }

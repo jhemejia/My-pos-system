@@ -66,3 +66,21 @@ nav {
   nav svg .fa-dollar-sign{
     padding: 15px;
   }
+
+  .logoutButton{
+    position: absolute;
+    bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding:  15px 0;
+    &:hover{
+      background: #ddd;
+    }
+    button{
+    font-size: 0.7rem;
+    color: #324A6D;
+    }
+    
+  }

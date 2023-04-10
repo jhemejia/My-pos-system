@@ -6,7 +6,7 @@ import useToggle from '../hooks/useToggle'
 
 const LoginPage = () => {
     const [isLogin, toggleIsLogin ] = useToggle(true);
-  console.log(isLogin)
+  
   return  ( 
     <div className={Styles.area}>
       <ul className={Styles.circles}>
