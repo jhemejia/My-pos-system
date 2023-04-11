@@ -13,7 +13,7 @@
     /* CART */
     .productList{
         position: relative;
-        height: 75vh;
+        height: 65vh;
         overflow-y: auto;
     }
 
@@ -121,7 +121,7 @@
 
     .totalCart {
         position: absolute;
-        bottom: 0;
+        bottom: 5px;
         color: white;
         background-color: rgb(130, 235, 25);
         border-radius: 25px;
@@ -132,4 +132,10 @@
             display: grid; 
             grid-template-columns: 3fr 0.6fr;
          }
+    }
+
+    @media only screen and (max-width:767px){
+        .productList{
+            height: 75vh
+        }
     }

@@ -9,7 +9,7 @@ export function InventoryMgmt(props){
 
     return (
         <>
-        <div>
+        <div className={Styles.inventory}>
         <h2>Inventory Management</h2>
         <CreateProduct />
         <div className={Styles.tableTitle}>
