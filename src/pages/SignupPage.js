@@ -1,6 +1,6 @@
 import React from 'react'
 import Styles from '../Styles/styles.module.scss'
-import LoginForm from '../features/auth/LoginForm'
+import SignUpForm from '../features/auth/SignUpForm'
 
 const LoginPage = () => {
   
@@ -19,7 +19,7 @@ const LoginPage = () => {
                     <li></li>
             </ul>
             <div className={Styles.loginFormContainer}>
-             <LoginForm />
+             <SignUpForm />
             </div>
 
     </div>

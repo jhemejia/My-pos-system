@@ -5,7 +5,7 @@ import { UserAuth } from './Auth'
 const PrivateRoute = ({children}) => {
   const { user } = UserAuth();
     if(!user){
-        return <Navigate to='/access' />
+        return <Navigate to='/login' />
     }
     return children;
 }
