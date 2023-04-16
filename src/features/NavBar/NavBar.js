@@ -10,11 +10,15 @@ const NavBar = () => {
 
    return (
     <nav className={Styles.navBar}>
-  <NavLink  to="#">
-    <FontAwesomeIcon icon={faDisplay} />
+  <NavLink  to="#" >
+    <FontAwesomeIcon icon={faDisplay}  />
     <span>Dashboard</span>
   </NavLink >
-  <NavLink  to="sales">
+  <NavLink  to="sales"
+  style={({isActive})=>{
+    return isActive? Styles.activeNav : ""
+  }}
+  >
   <FontAwesomeIcon icon={faCartShopping} />
       <span>Sales</span>
   </NavLink >

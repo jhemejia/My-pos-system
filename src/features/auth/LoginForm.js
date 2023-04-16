@@ -5,8 +5,7 @@ import { UserAuth } from './Auth';
 import { useNavigate } from 'react-router-dom';
 import { usePersistentState } from 'react-persistent-state';
 
-const LoginForm = (props) => {
-    const {toggleIsLogin} = props;
+const LoginForm = () => {
     const [userData, setUserData, unpersist] = usePersistentState({
         email: '',
         password: ''

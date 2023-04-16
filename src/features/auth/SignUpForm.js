@@ -7,8 +7,7 @@ import { usePersistentState } from 'react-persistent-state';
 
 
 
-const SignUpForm = (props) => {
-    const {toggleIsLogin} = props;
+const SignUpForm = (pros) => {
     const [userData, setUserData, unpersist] = usePersistentState({
         username: '',
         password: ''

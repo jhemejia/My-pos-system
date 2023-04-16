@@ -20,27 +20,7 @@ nav {
         &:hover {
           background: #ddd;
         }
-        &.active {
-            svg {
-                padding: .85em .8125em .75em 1.1875em;
-                
-              }
-              color: white;
-              background: #5d89ff;
-              box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
-              &::after {
-                box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
-                clip-path: inset(-5px -5px -5px 0);
-                content: "";
-                z-index: 2;
-                background: #5d89ff;     
-                position: absolute;
-        right: -0.5em;
-        width: 0.5em;
-        height: 100%;
-        border-radius: 0 0.375em 0.375em 0;
-      }
-    }
+        
     svg {
         padding: 0.75em 1em;
       }
@@ -63,6 +43,28 @@ nav {
       }
     }
   }
+  .activeNav  {
+    svg {
+        padding: .85em .8125em .75em 1.1875em;
+        
+      }
+      color: white;
+      background: #5d89ff;
+      box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+      &::after {
+        box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+        clip-path: inset(-5px -5px -5px 0);
+        content: "";
+        z-index: 2;
+        background: #5d89ff;     
+        position: absolute;
+        right: -0.5em;
+        width: 0.5em;
+        height: 100%;
+        border-radius: 0 0.375em 0.375em 0;
+      }
+}
+
   nav svg .fa-dollar-sign{
     padding: 15px;
   }
