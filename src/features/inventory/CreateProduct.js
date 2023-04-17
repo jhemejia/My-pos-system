@@ -5,16 +5,18 @@ import { createProduct, fetchProducts } from '../allProducts/productSlice';
 import { useCategories } from '../../hooks/useCategories';
 import useNewProduct from '../../hooks/useNewProduct';
 import { newProductSchema } from '../../Validations/NewProductValidation';
+import UploadImage from "./UploadImage";
 
 
-const CreateProduct = () => {
-  const { newProduct, handleInputChange, resetNewProductForm } = useNewProduct();
+const CreateProduct = (props) => {
+  const { productsLength } = props;
+  const { newProduct, handleInputChange, resetNewProductForm, setImageUrl } = useNewProduct(productsLength);
   const {categories} = useCategories();  
   const dispatch = useDispatch();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    console.log(newProduct)
     const isValid = await newProductSchema.isValid(newProduct);
    
     if (isValid) {
@@ -28,22 +30,64 @@ const CreateProduct = () => {
   };
 
   return (
+
     <div className={Styles.addProduct}>
       <form onSubmit={handleSubmit}>
         <div className={Styles.newProductFormInputs}>
-
         <div className={Styles.addProductInputDiv}>
           <input
             type="text"
-            name="title"
-            value={newProduct.title}
+            name="id"
+            value={newProduct.id}
+            className={`${Styles.allInputs} ${Styles.inputId}`}
+            placeholder='ID'
+            disabled
+            />
+          <label className={Styles.labels}>
+          ID
+              </label>
+            </div>
+        <div className={Styles.addProductInputDiv}>
+          <input
+            type="text"
+            name="name"
+            value={newProduct.name}
             onChange={handleInputChange}
             className={Styles.allInputs}
-            placeholder='Title'
+            placeholder='Product Name'
             required
             />
           <label className={Styles.labels}>
-          Title
+          Product Name
+              </label>
+            </div>
+
+        <div className={Styles.addProductInputDiv}>
+          <input
+            type="number"
+            name="stock"
+            value={newProduct.stock}
+            onChange={handleInputChange}
+            className={`${Styles.allInputs} ${Styles.smallInput}`}
+            placeholder='Stock'
+            required
+            />
+          <label className={Styles.labels}>
+          Stock
+              </label>
+            </div>
+            <div className={Styles.addProductInputDiv}>
+          <input
+            type="text"
+            name="reference"
+            value={newProduct.reference}
+            onChange={handleInputChange}
+            className={`${Styles.allInputs} ${Styles.smallInput}`}
+            placeholder='Reference'
+            required
+            />
+          <label className={Styles.labels}>
+          Reference
               </label>
             </div>
             <div className={Styles.addProductInputDiv}>
@@ -66,7 +110,7 @@ const CreateProduct = () => {
             name="price"
             value={newProduct.price}
             onChange={handleInputChange}
-            className={Styles.allInputs}
+            className={`${Styles.allInputs} ${Styles.smallInput}`}
             placeholder='Price'
             required
             />
@@ -110,11 +154,16 @@ const CreateProduct = () => {
           Category: 
           </label>
       </div>
+      <div className={Styles.addProductInputDiv}>
+        <UploadImage setImageUrl={setImageUrl} />
+      </div>
             </div>
             <div className={Styles.newProductSubmit}>
         <input type="submit" value="Add a Product"/>
             </div>
+            
       </form>
+    
     </div>
   );
 };

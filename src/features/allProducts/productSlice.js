@@ -1,4 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { db } from '../../firebase';
+import { doc, setDoc } from "firebase/firestore";
 
 export const fetchProducts = createAsyncThunk(
   'products/loadData',
@@ -53,21 +55,11 @@ export const createProduct = createAsyncThunk(
   'products/createProduct ',
    async(productData) => {
      try {
-      const response = await fetch('https://dummyjson.com/products/add', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(productData),
-      });
-      if (response.ok) {
-        console.log(response)
-        fetchProducts();
-      } else {
-        throw new Error('Unable to create product.');
-      }
+      await setDoc(doc(db, "products", productData.id), productData )
     } catch (error) {
       console.error(error);
+    } finally {
+      fetchProducts();
     }
   });
 

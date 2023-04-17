@@ -14,7 +14,7 @@
     height: 100%;
 }
   /*  Add a product form  */
- 
+
 .addProduct {
     position: relative;
     max-width: 100%; 
@@ -42,7 +42,15 @@
    height:40px;
    width: auto;
 }
-
+.addProductInputDiv input {
+    padding-left: 5px;
+}
+.addProductInputDiv input.inputId {
+    width:50px;
+}
+.addProductInputDiv input.smallInput {
+    width:100px;
+}
 .addProductInputDiv .labels{
     position: absolute;
     left: 10px;
@@ -91,6 +99,7 @@ display: block;
 font-size: 16px;
 opacity: 1;
 transition: all 0.35;
+padding-left: 5px;
 }
 .allInputs:focus::placeholder {
 opacity: 0;

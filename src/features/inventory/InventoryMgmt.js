@@ -6,14 +6,20 @@ import CreateProduct from './CreateProduct';
 export function InventoryMgmt(props){
     const { allProducts } = props;
     const [numberPerPage, setNumberPerPage] = useState(10);   
+    const [modal, setModal] = useState(false)
+    const productsLength = allProducts?.length
+    const toggleModal =()=>{
+        setModal(!modal);
+    }
 
     return (
         <>
         <div className={Styles.inventory}>
         <h2>Inventory Management</h2>
-        <CreateProduct />
+        <button onClick={toggleModal}>Add Product</button>
+        {modal && ( <CreateProduct productsLength={productsLength} /> )}
         <div className={Styles.tableTitle}>
-        <h3>Edit Product</h3> 
+        <h3>Product List</h3> 
         <div className={Styles.numberPerPage}>
         <select value={numberPerPage} onChange={(e)=>setNumberPerPage(e.target.value)}>
             <option value="10" >10</option>
